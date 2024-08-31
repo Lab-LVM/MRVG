@@ -694,6 +694,12 @@ In our experiments, we demonstrate that our music-reactive generation model perf
               height: '360',
               width: '640',
               videoId: youtube_id_list[i], // Replace with your video ID
+              playerVars: {
+                'modestbranding': 1,  // Use the more minimal branding
+                'rel': 0,             // Don't show related videos at the end
+                'showinfo': 0,        // Don't show video information
+                'iv_load_policy': 3   // Don't show video annotations
+              },
               events: {
                   'onReady': onPlayerReady
               }
