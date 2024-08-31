@@ -44,6 +44,21 @@
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
 </head>
+<style>
+  .mycontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .myitem {
+    flex-basis: 0;
+    flex-grow: 1;
+    margin: 1em;
+  }
+</style>
 <body>
 
 
@@ -60,7 +75,7 @@
                 <span class="author-block">
                   <a href="https://github.com/hankyul2" target="_blank">Hankyul Kang</a>,</span>
                   <span class="author-block">
-                    <a href="https://github.com/JongbinRyu" target="_blank">Jongbin Ryu</a>
+                    <a href="https://sites.google.com/view/jongbinryu/about-me" target="_blank">Jongbin Ryu</a>
                   </span>
                   </div>
 
@@ -178,44 +193,44 @@ In our experiments, we demonstrate that our music-reactive generation model perf
       </div>
       <h4 class="title is-4">Genre 1: Rock</h4>
       <h4 class="title is-5">Song Title: "Rock You Like A Hurricane"</h4>
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item item-video1">
+      <div class="mycontainer">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/smHRooxKzB8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
-          Method1: Original chromagram
+        <h2 class="title is-6">
+          Method1: Original chroma
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/sGNe0CEadhM?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method2: CENS (NIPS'21)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/JKVKplyH-jA?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method3: H-CENS (Ours)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/IXNLS-AJ904" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method4: H-CENS+MA (Ours)
         </h2>
       </div>
@@ -232,44 +247,44 @@ In our experiments, we demonstrate that our music-reactive generation model perf
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
       <h4 class="title is-5">Song Title: "Living On A Prayer"</h4>
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item item-video1">
+      <div class="mycontainer">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/IcPqGVEfU1g?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
-          Method1: Original chromagram
+        <h2 class="title is-6">
+          Method1: Original chroma
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/CyWZHx_CJ7E?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method2: CENS (NIPS'21)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/CONWLIFqSZk?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method3: H-CENS (Ours)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/JcBfu5iIONA?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method4: H-CENS+MA (Ours)
         </h2>
       </div>
@@ -289,44 +304,44 @@ In our experiments, we demonstrate that our music-reactive generation model perf
       <div class="column is-four-fifths">
       <h4 class="title is-4">Genre 2: K-POP</h4>
       <h4 class="title is-5">Song Title: "Hypeboy"</h4>
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item item-video1">
+      <div class="mycontainer">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/pSNvCHTayEw?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
-          Method1: Original chromagram
+        <h2 class="title is-6">
+          Method1: Original chroma
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/7_R3mZjqGj4?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method2: CENS (NIPS'21)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/-7hmERwuUkI?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method3: H-CENS (k=0) (Ours)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/ZAXFPdmhFD0?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method4: H-CENS (k=5) (Ours)
         </h2>
       </div>
@@ -342,44 +357,44 @@ In our experiments, we demonstrate that our music-reactive generation model perf
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
       <h4 class="title is-5">Song Title: "Dash"</h4>
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item item-video1">
+      <div class="mycontainer">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/gqwtSjOvCo0?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
-          Method1: Original chromagram
+        <h2 class="title is-6">
+          Method1: Original chroma
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/JprRPPyNCRo?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method2: CENS (NIPS'21)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/I--O8RoK3zo?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method3: H-CENS (k=0) (Ours)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/498mYT13sqg?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method4: H-CENS (k=5) (Ours)
         </h2>
       </div>
@@ -398,44 +413,44 @@ In our experiments, we demonstrate that our music-reactive generation model perf
       <div class="column is-four-fifths">
       <h4 class="title is-4">Genre 3: Traditional Instrumental Ensemble</h4>
       <h4 class="title is-5">Song Title: "Samulnori"</h4>
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item item-video1">
+      <div class="mycontainer">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/jNosuU46uk8?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
-          Method1: Original chromagram
+        <h2 class="title is-6">
+          Method1: Original chroma
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/4BdbDDjr58k?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method2: CENS (NIPS'21)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/uUjsC1w5DlY?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method3: H-CENS (k=0) (Ours)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/Eh2f2VcwNYI?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method4: H-CENS (k=5) (Ours)
         </h2>
       </div>
@@ -451,44 +466,44 @@ In our experiments, we demonstrate that our music-reactive generation model perf
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
       <h4 class="title is-5">Song Title: "Hello Im Innyeon"</h4>
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item item-video1">
+      <div class="mycontainer">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/Vpyg7DKC2hs?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
-          Method1: Original chromagram
+        <h2 class="title is-6">
+          Method1: Original chroma
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/5Q_3oBOXNQw?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method2: CENS (NIPS'21)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/bBtECT2EjPI?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method3: H-CENS (k=0) (Ours)
         </h2>
         </div>
-       <div class="item item-video1">
+       <div class="myitem item item-video1">
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
             <iframe src="https://youtube.com/embed/vKNBF9AQGME?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
-        <h2 class="subtitle has-text-centered">
+        <h2 class="title is-6">
           Method4: H-CENS (k=5) (Ours)
         </h2>
       </div>
