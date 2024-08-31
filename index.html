@@ -62,6 +62,7 @@
 <body>
 
 
+
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
@@ -198,7 +199,7 @@ In our experiments, we demonstrate that our music-reactive generation model perf
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
-            <iframe src="https://youtube.com/embed/smHRooxKzB8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe id="player" src="https://youtube.com/embed/smHRooxKzB8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
         <h2 class="title is-6">
           Method1: Original chroma
@@ -309,7 +310,7 @@ In our experiments, we demonstrate that our music-reactive generation model perf
         <!-- Your image here -->
         <div class="publication-video">
             <!-- Youtube embed code here -->
-            <iframe src="https://youtube.com/embed/pSNvCHTayEw?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe id="player" src="https://youtube.com/embed/pSNvCHTayEw?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           </div>
         <h2 class="title is-6">
           Method1: Original chroma
@@ -619,5 +620,32 @@ In our experiments, we demonstrate that our music-reactive generation model perf
 
     <!-- End of Statcounter Code -->
 
+  <script>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    console.log('hello')
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+      console.log('hello2')
+      player = new YT.Player('player', {
+        events: {
+          'onReady': onPlayerReady,
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      console.log('hello3')
+      var embedCode = event.target.getVideoEmbedCode();
+      event.target.playVideo();
+      if (document.getElementById('embed-code')) {
+        document.getElementById('embed-code').innerHTML = embedCode;
+      }
+    }
+  </script>
   </body>
   </html>
