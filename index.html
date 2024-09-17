@@ -260,6 +260,18 @@ In our experiments, we demonstrate that our music-reactive generation model perf
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
+      <h2 class="title is-3">Music-Reactive Video Generation Comparison</h2>
+      <div class="content has-text-justified">
+        <p>We generate music-reactive videos on three different music genres (<em>i.e.</em>, Rock, K-POP, Traditional Instrumental Ensemble) and compare different generation methods.
+          In every genre, ours work favorably compared to decent baseline methods. You can control video sound using below bar.
+        </p>
+      <div class="mybar">
+        <div>
+          <img src="static/images/sound-icon.png" alt="Volume" style="display:block; width: 1.5em;">
+        </div>
+        <input style="margin: 1em; width: 10em;" type="range" id="volumeControl" min="0" max="100" value="50" step="1" oninput="setVolume(this.value)">
+      </div>
+      </div>
       <h2 class="title is-3">Genre 1: Rock</h2>
       <div id="carousel-rock" class="carousel results-carousel">
 
