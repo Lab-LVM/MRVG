@@ -43,6 +43,63 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // bulmaCarousel 초기화
+      const carousels = bulmaCarousel.attach('#carousel-rock, #results-carousel', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        infinite: false,   // 무한 루프 비활성화
+        autoplay: false,
+        loop: false,       // 루프 비활성화
+        navigation: true,
+        pagination: true
+      });
+    // 슬라이드 복제 방지
+    document.querySelectorAll('.slider-item[data-slider-index="2"], .slider-item[data-slider-index="3"], .slider-item[data-slider-index="4"]').forEach(slide => {
+      slide.remove();
+    });
+
+      // 첫 번째와 마지막 슬라이드에서 버튼 비활성화
+      function updateNavigationButtons(carousel) {
+        const prevButton = carousel.element.querySelector('.slider-navigation-previous');
+        const nextButton = carousel.element.querySelector('.slider-navigation-next');
+        const totalSlides = carousel.element.querySelectorAll('.slider-item').length;
+        const currentIndex = carousel.element.querySelector('.is-current').dataset.sliderIndex;
+
+        // 첫 슬라이드에서는 왼쪽 버튼 비활성화
+        if (currentIndex === '0') {
+          prevButton.style.visibility = 'hidden';
+        } else {
+          prevButton.style.visibility = 'visible';
+        }
+
+        // 마지막 슬라이드 (index 1이 끝일 경우)에서는 오른쪽 버튼 비활성화
+        if (parseInt(currentIndex) === totalSlides - 1) {
+          nextButton.style.visibility = 'hidden';
+        } else {
+          nextButton.style.visibility = 'visible';
+        }
+      }
+
+
+
+      // 각 슬라이더에 대해 버튼 업데이트 처리
+      carousels.forEach(carousel => {
+        carousel.on('slide:after', () => {
+          updateNavigationButtons(carousel);
+        });
+
+        // 초기 버튼 상태 업데이트
+        updateNavigationButtons(carousel);
+      });
+    });
+</script>
+
+  
+  
+</body>
+</html>
 </head>
 <style>
   .mybar {
@@ -54,25 +111,32 @@
     align-items: center;
   }
   .mycontainer {
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-around;
-    align-items: center; */
-    display: grid;
-    grid-template-columns: 5fr 5fr;
-    grid-gap: 1rem;
+    display: block;
   }
   .myitem {
-    /* flex-basis: 0;
-    flex-grow: 1;
-    margin: 1em; */
+    margin: 0 auto;
+  }
+  .publication-video {
+    width: 100%;
+    height: auto;
+  }
+  .hero .teaser img {
+    width: 900px !important;
+    height: 500px !important;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .slider-page[data-index='2'], 
+  .slider-page[data-index='3'] {
+    display: none;
+  }
+  .slider-item h4.title.is-5, h2.title.is-3 {
+    text-align: center;
   }
 </style>
 <body>
-
-
 
   <section class="hero">
     <div class="hero-body">
@@ -152,20 +216,20 @@
 
 <!-- Teaser video-->
 <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- <video poster="" id="tree" autoplay controls muted loop height="100%"> -->
-        <!-- Your video here -->
-        <!-- <source src="static/videos/banner_video.mp4"
-        type="video/mp4"> -->
-      <!-- </video> -->
-       <img src="static/images/overview.png">
-      <h2 class="subtitle has-text-centered">
-        Schematic overview of our music reactive video generation framework.
-      </h2>
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <!-- <video poster="" id="tree" autoplay controls muted loop height="100%"> -->
+          <!-- Your video here -->
+          <!-- <source src="static/videos/banner_video.mp4"
+          type="video/mp4"> -->
+        <!-- </video> -->
+         <img src="static/images/fig_1_sample.png">
+        <h2 class="subtitle has-text-centered">
+          Schematic overview of our music reactive video generation framework.
+        </h2>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 <!-- End teaser video -->
 
 <!-- Paper abstract -->
@@ -192,368 +256,107 @@ In our experiments, we demonstrate that our music-reactive generation model perf
 
 
 <!-- Youtube carousel -->
+<!-- 첫 번째 슬라이더 -->
 <section class="hero is-small">
   <div class="hero-body">
-    <div class="container">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-      <h2 class="title is-3">Music-Reactive Video Generation Comparison</h2>
-      <div class="content has-text-justified">
-        <p>We generate music-reactive videos on three different music genres (<em>i.e.</em>, Rock, K-POP, Traditional Instrumental Ensemble) and compare different generation methods.
-          In every genre, ours work favorably compared to decent baseline methods. You can control video sound using below bar.
-        </p>
-      <div class="mybar">
-        <div>
-          <img src="static/images/sound-icon.png" alt="Volume" style="display:block; width: 1.5em;">
-        </div>
-        <input style="margin: 1em; width: 10em;" type="range" id="volumeControl" min="0" max="100" value="50" step="1" oninput="setVolume(this.value)">
-      </div>
-      </div>
-      <h4 class="title is-4">Genre 1: Rock</h4>
-      <h4 class="title is-5">Song Title: "Rock You Like A Hurricane"</h4>
-      <div class="mycontainer">
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe id="player" src="https://youtube.com/embed/smHRooxKzB8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-             <div id="player1"></div>
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Genre 1: Rock</h2>
+      <div id="carousel-rock" class="carousel results-carousel">
+
+        <div class="slider-container" style="opacity: 1; width: 1920px; transition: 300ms; transform: translate3d(0px, 0px, 0px);">
+          
+          <!-- 첫 번째 슬라이드 -->
+          <div class="slider-item is-current" data-slider-index="0" style="width: 960px;height: 620px">
+            <h4 class="title is-5">Song Title: "Rock You Like A Hurricane"</h4>
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://youtube.com/embed/Qp3InJDSEUQ" frameborder="0" allowfullscreen></iframe>
+            </div>
           </div>
-        <h2 class="title is-6">
-          Method1: Original chromagram
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/sGNe0CEadhM?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player2"></div>
+          
+          <!-- 두 번째 슬라이드 -->
+          <div class="slider-item " data-slider-index="1" style="width: 960px;height: 620px">
+            <h4 class="title is-5">Song Title: "Living On A Prayer"</h4>
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://youtube.com/embed/UEBC4-zF43I" frameborder="0" allowfullscreen></iframe>
+            </div>
           </div>
-        <h2 class="title is-6">
-          Method2: CENS (NIPS'21)
-        </h2>
+        
+
         </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/JKVKplyH-jA?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player3"></div>
-          </div>
-        <h2 class="title is-6">
-          Method3: H-CENS (Ours)
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/IXNLS-AJ904" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player4"></div>
-          </div>
-        <h2 class="title is-6">
-          Method4: H-CENS+MA (Ours)
-        </h2>
+        <div class="slider-navigation-previous"></div>
+        <div class="slider-navigation-next"></div>      
+        <div class="slider-pagination"></div>
+
       </div>
-      </div>
+    </div>
   </div>
-  </div>
-</div>
-</div>
 </section>
 
 <section class="hero is-small">
   <div class="hero-body">
-    <div class="container">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-      <h4 class="title is-5">Song Title: "Living On A Prayer"</h4>
-      <div class="mycontainer">
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/IcPqGVEfU1g?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-             <div id="player5"></div>
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Genre 2: K-POP</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="slider-container" style="opacity: 1; width: 1920px; transition: 300ms; transform: translate3d(0px, 0px, 0px);">
+       <!-- 첫 번째 슬라이드 -->
+        <div class="slider-item is-current" data-slider-index="0" style="width: 960px;height: 620px">
+          <h4 class="title is-5">Song Title: "Hypeboy"</h4>
+          <div class="video-container">
+            <iframe width="560" height="315" src="https://youtube.com/embed/Km-3w4dMO-I" frameborder="0" allowfullscreen></iframe>
           </div>
-        <h2 class="title is-6">
-          Method1: Original chromagram
-        </h2>
         </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/CyWZHx_CJ7E?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player6"></div>
-          </div>
-        <h2 class="title is-6">
-          Method2: CENS (NIPS'21)
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/CONWLIFqSZk?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player7"></div>
-          </div>
-        <h2 class="title is-6">
-          Method3: H-CENS (Ours)
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/JcBfu5iIONA?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player8"></div>
-          </div>
-        <h2 class="title is-6">
-          Method4: H-CENS+MA (Ours)
-        </h2>
-      </div>
-  </div>
-  </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+        
+        <!-- 두 번째 슬라이드 -->
+        <div class="slider-item" data-slider-index="1" style="width: 960px;height: 620px">
+          <h4 class="title is-5">Song Title: "Dash"</h4>
+          <div class="video-container">
+            <iframe width="560" height="315" src="https://youtube.com/embed/rcbP4kzhbms" frameborder="0" allowfullscreen></iframe>
 
-<!-- Youtube carousel -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-      <h4 class="title is-4">Genre 2: K-POP</h4>
-      <h4 class="title is-5">Song Title: "Hypeboy"</h4>
-      <div class="mycontainer">
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe id="player" src="https://youtube.com/embed/pSNvCHTayEw?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-             <div id="player9"></div>
-        </div>
-        <h2 class="title is-6">
-          Method1: Original chromagram
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/7_R3mZjqGj4?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player10"></div>
           </div>
-        <h2 class="title is-6">
-          Method2: CENS (NIPS'21)
-        </h2>
         </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/-7hmERwuUkI?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player11"></div>
-          </div>
-        <h2 class="title is-6">
-          Method3: H-CENS (k=0) (Ours)
-        </h2>
+
         </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/ZAXFPdmhFD0?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player12"></div>
-          </div>
-        <h2 class="title is-6">
-          Method4: H-CENS (k=5) (Ours)
-        </h2>
+        <div class="slider-navigation-previous"></div>
+        <div class="slider-navigation-next"></div>
+        <div class="slider-pagination"></div>
       </div>
+    </div>
   </div>
-  </div>
-  </div>
-</div>
-</div>
 </section>
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-      <h4 class="title is-5">Song Title: "Dash"</h4>
-      <div class="mycontainer">
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/gqwtSjOvCo0?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-             <div id="player13"></div>
-          </div>
-        <h2 class="title is-6">
-          Method1: Original chromagram
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/JprRPPyNCRo?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player14"></div>
-          </div>
-        <h2 class="title is-6">
-          Method2: CENS (NIPS'21)
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/I--O8RoK3zo?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player15"></div>
-          </div>
-        <h2 class="title is-6">
-          Method3: H-CENS (k=0) (Ours)
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/498mYT13sqg?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player16"></div>
-          </div>
-        <h2 class="title is-6">
-          Method4: H-CENS (k=5) (Ours)
-        </h2>
-      </div>
-  </div>
-  </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
 
 <section class="hero is-small">
   <div class="hero-body">
-    <div class="container">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-      <h4 class="title is-4">Genre 3: Traditional Instrumental Ensemble</h4>
-      <h4 class="title is-5">Song Title: "Samulnori"</h4>
-      <div class="mycontainer">
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/jNosuU46uk8?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-             <div id="player17"></div>
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Genre 3: Traditional Instrumental Ensemble</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="slider-container" style="opacity: 1; width: 1920px; transition: 300ms; transform: translate3d(0px, 0px, 0px);">
+       <!-- 첫 번째 슬라이드 -->
+        <div class="slider-item is-current" data-slider-index="0" style="width: 960px;height: 620px">
+          <h4 class="title is-5">Song Title: "Samulnori"</h4>
+          <div class="video-container">
+            <iframe width="560" height="315" src="https://youtube.com/embed/h9k1voPyoos?feature=share" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
           </div>
-        <h2 class="title is-6">
-          Method1: Original chromagram
-        </h2>
         </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/4BdbDDjr58k?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player18"></div>
+        
+        <!-- 두 번째 슬라이드 -->
+        <div class="slider-item" data-slider-index="1" style="width: 960px;height: 620px">
+          <h4 class="title is-5">Song Title: "Hello I'm Innyeon"</h4>
+          <div class="video-container">
+            <iframe width="560" height="315" src="https://youtube.com/embed/W-AaFn8Fyhw?feature=share"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
           </div>
-        <h2 class="title is-6">
-          Method2: CENS (NIPS'21)
-        </h2>
         </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/uUjsC1w5DlY?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player19"></div>
-          </div>
-        <h2 class="title is-6">
-          Method3: H-CENS (k=0) (Ours)
-        </h2>
+
         </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/Eh2f2VcwNYI?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player20"></div>
-          </div>
-        <h2 class="title is-6">
-          Method4: H-CENS (k=5) (Ours)
-        </h2>
+        <div class="slider-navigation-previous"></div>
+        <div class="slider-navigation-next"></div>
+        <div class="slider-pagination"></div>
       </div>
+    </div>
   </div>
-  </div>
-  </div>
-</div>
-</div>
-</section>
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-      <h4 class="title is-5">Song Title: "Hello Im Innyeon"</h4>
-      <div class="mycontainer">
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/Vpyg7DKC2hs?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-             <div id="player21"></div>
-          </div>
-        <h2 class="title is-6">
-          Method1: Original chromagram
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/5Q_3oBOXNQw?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player22"></div>
-          </div>
-        <h2 class="title is-6">
-          Method2: CENS (NIPS'21)
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/bBtECT2EjPI?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player23"></div>
-          </div>
-        <h2 class="title is-6">
-          Method3: H-CENS (k=0) (Ours)
-        </h2>
-        </div>
-       <div class="myitem item item-video1">
-        <!-- Your image here -->
-        <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <!-- <iframe src="https://youtube.com/embed/vKNBF9AQGME?feature=share" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-             <div id="player24"></div>
-          </div>
-        <h2 class="title is-6">
-          Method4: H-CENS (k=5) (Ours)
-        </h2>
-      </div>
-  </div>
-  </div>
-  </div>
-</div>
-</div>
 </section>
 <!-- End image carousel -->
 
