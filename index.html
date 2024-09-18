@@ -238,13 +238,12 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+        <div class="con/home/sinssinej7/MRVG/statictent has-text-justified">
           <p>
             While generating music-reactive videos is an important task in real-world applications, it has been quite a challenging generation task.
 We argue that this challenge arises from two main factors: 1) evaluating the music-reactive generation task is fundamentally a subjective matter of individual humans, and thus, 2) applying metrics for quantitative measurement used in existing generative models is tricky.
 For this reason, in this paper, we introduce an efficient music-reactive video generation model, as well as a metric that can accurately evaluate generated music-reactive videos.For our music-reactive generation model, we present the highlighted chromagram approach to represent musical structure information(<em>e.g.</em>, melody, beat, rhythm) in a video effectively.
-Since musical structure information appears in a very small area in the chromagram, we introduce a highlighting method to augment the structure information in generating videos. 
-We also offer quantitative measurement metric that have a strong correlation with human survey results.
+Since musical structure information appeasurement metric that have a strong correlation with human survey results.
 In our experiments, we demonstrate that our music-reactive generation model performs favorably, with the proposed metric tending to match the results of human surveys.
           </p>
         </div>
@@ -281,7 +280,8 @@ In our experiments, we demonstrate that our music-reactive generation model perf
           <div class="slider-item is-current" data-slider-index="0" style="width: 960px;height: 620px">
             <h4 class="title is-5">Song Title: "Rock You Like A Hurricane"</h4>
             <div class="video-container">
-              <iframe width="560" height="315" src="https://youtube.com/embed/Qp3InJDSEUQ" frameborder="0" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://youtube.com/embed/yFJ1g9xWAew?feature=share" frameborder="0" allowfullscreen></iframe>
+              <div id="player1"></div>
             </div>
           </div>
           
@@ -289,7 +289,8 @@ In our experiments, we demonstrate that our music-reactive generation model perf
           <div class="slider-item " data-slider-index="1" style="width: 960px;height: 620px">
             <h4 class="title is-5">Song Title: "Living On A Prayer"</h4>
             <div class="video-container">
-              <iframe width="560" height="315" src="https://youtube.com/embed/UEBC4-zF43I" frameborder="0" allowfullscreen></iframe>
+              <iframe width="560" height="315" src="https://youtube.com/embed/qIpa7DbAZF4?feature=share" frameborder="0" allowfullscreen></iframe>
+              <div id="player2"></div>
             </div>
           </div>
         
@@ -314,7 +315,9 @@ In our experiments, we demonstrate that our music-reactive generation model perf
         <div class="slider-item is-current" data-slider-index="0" style="width: 960px;height: 620px">
           <h4 class="title is-5">Song Title: "Hypeboy"</h4>
           <div class="video-container">
-            <iframe width="560" height="315" src="https://youtube.com/embed/Km-3w4dMO-I" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://youtube.com/embed/4iwAX7czFp0?feature=share" frameborder="0" allowfullscreen></iframe>
+            <div id="player3"></div>
+
           </div>
         </div>
         
@@ -322,7 +325,8 @@ In our experiments, we demonstrate that our music-reactive generation model perf
         <div class="slider-item" data-slider-index="1" style="width: 960px;height: 620px">
           <h4 class="title is-5">Song Title: "Dash"</h4>
           <div class="video-container">
-            <iframe width="560" height="315" src="https://youtube.com/embed/rcbP4kzhbms" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://youtube.com/embed/92YCn89h6bw?feature=share" frameborder="0" allowfullscreen></iframe>
+            <div id="player4"></div>
 
           </div>
         </div>
@@ -346,9 +350,11 @@ In our experiments, we demonstrate that our music-reactive generation model perf
         <div class="slider-item is-current" data-slider-index="0" style="width: 960px;height: 620px">
           <h4 class="title is-5">Song Title: "Samulnori"</h4>
           <div class="video-container">
-            <iframe width="560" height="315" src="https://youtube.com/embed/h9k1voPyoos?feature=share" 
+            <iframe width="560" height="315" src="https://youtube.com/embed/zwW_cVBL7Z8?feature=share" 
                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen></iframe>
+            <div id="player5"></div>
+
           </div>
         </div>
         
@@ -356,9 +362,11 @@ In our experiments, we demonstrate that our music-reactive generation model perf
         <div class="slider-item" data-slider-index="1" style="width: 960px;height: 620px">
           <h4 class="title is-5">Song Title: "Hello I'm Innyeon"</h4>
           <div class="video-container">
-            <iframe width="560" height="315" src="https://youtube.com/embed/W-AaFn8Fyhw?feature=share"
+            <iframe width="560" height="315" src="https://youtube.com/embed/ph3U3gRrwKM?feature=share"
                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen></iframe>
+            <div id="player6"></div>
+
           </div>
         </div>
 
@@ -486,30 +494,12 @@ In our experiments, we demonstrate that our music-reactive generation model perf
 
     var players = [];
     var youtube_id_list = [
-      "smHRooxKzB8",
-      "sGNe0CEadhM",
-      "JKVKplyH-jA",
-      "IXNLS-AJ904",
-      "IcPqGVEfU1g",
-      "CyWZHx_CJ7E",
-      "CONWLIFqSZk",
-      "JcBfu5iIONA",
-      "pSNvCHTayEw",
-      "7_R3mZjqGj4",
-      "-7hmERwuUkI",
-      "ZAXFPdmhFD0",
-      "gqwtSjOvCo0",
-      "JprRPPyNCRo",
-      "I--O8RoK3zo",
-      "498mYT13sqg",
-      "jNosuU46uk8",
-      "4BdbDDjr58k",
-      "uUjsC1w5DlY",
-      "Eh2f2VcwNYI",
-      "Vpyg7DKC2hs",
-      "5Q_3oBOXNQw",
-      "bBtECT2EjPI?",
-      "vKNBF9AQGME",
+    'yFJ1g9xWAew',
+    'qIpa7DbAZF4',
+    '4iwAX7czFp0',
+    '92YCn89h6bw',
+    'zwW_cVBL7Z8',
+    'ph3U3gRrwKM'
     ];
 
     function setVolumeForAllPlayers(volume) {
