@@ -36,6 +36,7 @@
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -43,6 +44,65 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var mySwiper = new Swiper(".swiper-container", {
+        slidesPerView: 3, // 한 번에 보이는 슬라이드 수
+        slidesPerGroup: 1, // 한 번에 이동하는 슬라이드 수
+        spaceBetween: 24, // 슬라이드 간격
+        navigation: {
+          nextEl: ".swiper-button-next", // 오른쪽 네비게이션 버튼
+          prevEl: ".swiper-button-prev", // 왼쪽 네비게이션 버튼
+        },
+        breakpoints: {
+          1280: {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+          },
+          720: {
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+          },
+        },
+      });
+  
+      // YouTube API 초기화가 끝난 후 Swiper 슬라이더를 다시 렌더링
+      onYouTubeIframeAPIReady();
+    });
+  
+    // YouTube API 초기화
+    function onYouTubeIframeAPIReady() {
+      var youtube_id_list = [
+        "HCeob3NlD9M", // Hypeboy
+        "-qhX_-0rdcU", // Dash
+        "Xm2eeFdv0Y8", // Samulnori
+        "1-vu_3xscuA", // Hello I'm Innyeon
+        "StLspnjgyyY", // Rock You Like A Hurricane
+        "xkd-q7IUrRg", // Living On A Prayer
+      ];
+  
+      youtube_id_list.forEach(function (videoId, index) {
+        new YT.Player("player" + (index + 1), {
+          videoId: videoId,
+          playerVars: {
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+          },
+          events: {
+            onReady: onPlayerReady,
+          },
+        });
+      });
+    }
+  
+    function onPlayerReady(event) {
+      var initialVolume = document.getElementById("volumeControl").value;
+      event.target.setVolume(initialVolume);
+    }
+  </script>
+  
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // bulmaCarousel 초기화
@@ -135,6 +195,67 @@
   .slider-item h4.title.is-5, h2.title.is-3 {
     text-align: center;
   }
+
+  .swiper-slide h4.title.is-5, h3.title.is-4 {
+    text-align: center;
+  }
+/* 슬라이더 스타일 */
+.swiper-container {
+    position: relative; /* 슬라이더 내부에 버튼 위치를 조정하기 위해 relative */
+    width: 100%;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.swiper-button-next::before, .swiper-button-prev::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 0 6px 8px; /* 삼각형 모양 */
+    border-color: transparent transparent transparent black; /* 화살표 색상 */
+}
+
+.swiper-button-next::before {
+    transform: rotate(0deg); /* 오른쪽 화살표 */
+}
+
+.swiper-button-prev::before {
+    transform: rotate(180deg); /* 왼쪽 화살표 */
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+
+
+
 </style>
 <body>
 
@@ -303,6 +424,47 @@ In our experiments, we demonstrate that our music-reactive generation model perf
   </div>
 </section>
 
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h3 class="title is-4">H-CENS videos</h4>
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <h4 class="title is-5">Heya</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/uGW1x527fUw?feature=share" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Supernatural</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/QEuKJhw5Tww?feature=share" frameborder="0" allowfullscreen></iframe>
+
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Small girl</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/vbn7HBiWTuE?feature=share" frameborder="0" allowfullscreen></iframe>
+
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Supernova</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/D-HBYRbOw8Q?feature=share" frameborder="0" allowfullscreen></iframe>
+
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Bamyanggang</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/JEbRJBu3xPk?feature=share" frameborder="0" allowfullscreen></iframe>
+
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -337,6 +499,43 @@ In our experiments, we demonstrate that our music-reactive generation model perf
         <div class="slider-navigation-previous"></div>
         <div class="slider-navigation-next"></div>
         <div class="slider-pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--국악 H-CENS 영상 모음-->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h3 class="title is-4">H-CENS videos</h4>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <h4 class="title is-5">The moon reflected in a well</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/urAUcu--sRM?feature=share" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">The tiger is here</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/4SK7nUNZbwQ?feature=share" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Iced ripe persimmon</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/jqiZ1a73MCc?feature=share" frameborder="0" allowfullscreen></iframe>
+
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Dance in hangawi</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/JQdmGNwnP4I?feature=share" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Full of happy things</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/85LHJ1KVlhY?feature=share" frameborder="0" allowfullscreen></iframe>
+
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
     </div>
   </div>
@@ -378,6 +577,42 @@ In our experiments, we demonstrate that our music-reactive generation model perf
   </div>
 </section>
 
+<!--락 H-CENS 영상 모음-->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h3 class="title is-4">H-CENS videos</h4>
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <h4 class="title is-5">Takin me down hardline</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/78k3_fNDCc0?feature=share" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Cherry pie warrant</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/3sCSruiinuY?feature=share" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Youth gone wild skid row</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/dAuxzeQJpv0?feature=share" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Since you been gone rainbow</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/6F5FT-GvN2E?feature=share" frameborder="0" allowfullscreen></iframe>
+
+          </div>
+          <div class="swiper-slide">
+            <h4 class="title is-5">Rising force yngwie malmsteen</h4>
+            <iframe width="100%" height="150" src="https://youtube.com/embed/cWcvGmao3TI?feature=share" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <!-- End image carousel -->
@@ -498,10 +733,25 @@ In our experiments, we demonstrate that our music-reactive generation model perf
     var youtube_id_list = [
       'HCeob3NlD9M',
       '-qhX_-0rdcU',
+      'uGW1x527fUw',
+      'QEuKJhw5Tww',
+      'vbn7HBiWTuE',
+      'D-HBYRbOw8Q',
+      'JEbRJBu3xPk',
       'Xm2eeFdv0Y8',
       '1-vu_3xscuA',
+      'urAUcu--sRM',
+      '4SK7nUNZbwQ',
+      'jqiZ1a73MCc',
+      'JQdmGNwnP4I',
+      '85LHJ1KVlhY',
       'StLspnjgyyY',
-      'xkd-q7IUrRg'
+      'xkd-q7IUrRg',
+      '78k3_fNDCc0',
+      '3sCSruiinuY',
+      'dAuxzeQJpv0',
+      '6F5FT-GvN2E',
+      'cWcvGmao3TI'
     ];
 
     function setVolumeForAllPlayers(volume) {
@@ -512,24 +762,6 @@ In our experiments, we demonstrate that our music-reactive generation model perf
       }
     }
 
-    function onYouTubeIframeAPIReady() {
-      for (let i = 0; i < 24; i++) {
-          players[i] = new YT.Player('player' + (i+1), {
-              height: '360',
-              width: '640',
-              videoId: youtube_id_list[i], // Replace with your video ID
-              playerVars: {
-                'modestbranding': 1,  // Use the more minimal branding
-                'rel': 0,             // Don't show related videos at the end
-                'showinfo': 0,        // Don't show video information
-                'iv_load_policy': 3   // Don't show video annotations
-              },
-              events: {
-                  'onReady': onPlayerReady
-              }
-          });
-      }
-    }
 
     function onPlayerReady(event) {
       var initialVolume = document.getElementById('volumeControl').value;
