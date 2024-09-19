@@ -48,12 +48,12 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       var mySwiper = new Swiper(".swiper-container", {
-        slidesPerView: 3, // 한 번에 보이는 슬라이드 수
-        slidesPerGroup: 1, // 한 번에 이동하는 슬라이드 수
-        spaceBetween: 24, // 슬라이드 간격
+        slidesPerView: 3,
+        slidesPerGroup: 1,
+        spaceBetween: 24,
         navigation: {
-          nextEl: ".swiper-button-next", // 오른쪽 네비게이션 버튼
-          prevEl: ".swiper-button-prev", // 왼쪽 네비게이션 버튼
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
         breakpoints: {
           1280: {
@@ -71,19 +71,20 @@
       onYouTubeIframeAPIReady();
     });
   
+    var players = [];
+    var youtube_id_list = [
+      "HCeob3NlD9M", // Hypeboy
+      "-qhX_-0rdcU", // Dash
+      "Xm2eeFdv0Y8", // Samulnori
+      "1-vu_3xscuA", // Hello I'm Innyeon
+      "StLspnjgyyY", // Rock You Like A Hurricane
+      "xkd-q7IUrRg", // Living On A Prayer
+    ];
+  
     // YouTube API 초기화
     function onYouTubeIframeAPIReady() {
-      var youtube_id_list = [
-        "HCeob3NlD9M", // Hypeboy
-        "-qhX_-0rdcU", // Dash
-        "Xm2eeFdv0Y8", // Samulnori
-        "1-vu_3xscuA", // Hello I'm Innyeon
-        "StLspnjgyyY", // Rock You Like A Hurricane
-        "xkd-q7IUrRg", // Living On A Prayer
-      ];
-  
       youtube_id_list.forEach(function (videoId, index) {
-        new YT.Player("player" + (index + 1), {
+        players[index] = new YT.Player("player" + (index + 1), {
           videoId: videoId,
           playerVars: {
             modestbranding: 1,
@@ -101,6 +102,19 @@
       var initialVolume = document.getElementById("volumeControl").value;
       event.target.setVolume(initialVolume);
     }
+  
+    function setVolumeForAllPlayers(volume) {
+      players.forEach(function (player) {
+        if (player && typeof player.setVolume === 'function') {
+          player.setVolume(volume);
+        }
+      });
+    }
+  
+    document.getElementById("volumeControl").addEventListener("input", function () {
+      var volume = this.value;
+      setVolumeForAllPlayers(volume);
+    });
   </script>
   
   <script>
@@ -162,6 +176,21 @@
 </html>
 </head>
 <style>
+  body::before {
+    content: "";
+    background-image: url('/home/sinssinej7/MRVG/static/css/1_sep_5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    z-index: -1;
+  }
+
   .mybar {
     display: flex;
     flex-direction: row;
@@ -461,7 +490,7 @@ section.hero.is-small.close-gap {
 </section>
 
 
-<section class="hero is-small">
+<section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Genre 2: Traditional Instrumental Ensemble</h2>
@@ -536,7 +565,7 @@ section.hero.is-small.close-gap {
   </div>
 </section>
 
-<section class="hero is-small close-gap">
+<section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Music-Reactive Video Generation with H-CENS</h4>
@@ -743,55 +772,54 @@ section.hero.is-small.close-gap {
 
     <!-- End of Statcounter Code -->
 
-  <script>
-    var tag = document.createElement('script');
-
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    console.log('hello')
-
-    var players = [];
-    var youtube_id_list = [
-      'HCeob3NlD9M',
-      '-qhX_-0rdcU',
-      'uGW1x527fUw',
-      'QEuKJhw5Tww',
-      'vbn7HBiWTuE',
-      'D-HBYRbOw8Q',
-      'JEbRJBu3xPk',
-      'Xm2eeFdv0Y8',
-      '1-vu_3xscuA',
-      'urAUcu--sRM',
-      '4SK7nUNZbwQ',
-      'jqiZ1a73MCc',
-      'JQdmGNwnP4I',
-      '85LHJ1KVlhY',
-      'StLspnjgyyY',
-      'xkd-q7IUrRg',
-      '78k3_fNDCc0',
-      '3sCSruiinuY',
-      'dAuxzeQJpv0',
-      '6F5FT-GvN2E',
-      'cWcvGmao3TI'
-    ];
-
-    function setVolumeForAllPlayers(volume) {
-      for (let i = 0; i < 24; i++) {
-          if (players[i] && typeof players[i].setVolume === 'function') {
-              players[i].setVolume(volume);
-          }
+    <script>
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+      var players = [];
+      var youtube_id_list = [
+        'HCeob3NlD9M', '-qhX_-0rdcU', 'uGW1x527fUw', 'QEuKJhw5Tww', 'vbn7HBiWTuE',
+        'D-HBYRbOw8Q', 'JEbRJBu3xPk', 'Xm2eeFdv0Y8', '1-vu_3xscuA', 'urAUcu--sRM',
+        '4SK7nUNZbwQ', 'jqiZ1a73MCc', 'JQdmGNwnP4I', '85LHJ1KVlhY', 'StLspnjgyyY',
+        'xkd-q7IUrRg', '78k3_fNDCc0', '3sCSruiinuY', 'dAuxzeQJpv0', '6F5FT-GvN2E', 'cWcvGmao3TI'
+      ];
+    
+      function onYouTubeIframeAPIReady() {
+        youtube_id_list.forEach(function (videoId, index) {
+          players[index] = new YT.Player('player' + (index + 1), {
+            videoId: videoId,
+            playerVars: {
+              modestbranding: 1,
+              rel: 0,
+              showinfo: 0,
+            },
+            events: {
+              onReady: onPlayerReady,
+            },
+          });
+        });
       }
-    }
-
-
-    function onPlayerReady(event) {
-      var initialVolume = document.getElementById('volumeControl').value;
-      setVolumeForAllPlayers(initialVolume)
-    }
-    function setVolume(volume) {
-      setVolumeForAllPlayers(volume)
-    }
-  </script>
+    
+      function onPlayerReady(event) {
+        var initialVolume = document.getElementById('volumeControl').value;
+        event.target.setVolume(initialVolume);
+      }
+    
+      function setVolumeForAllPlayers(volume) {
+        players.forEach(function (player) {
+          if (player && typeof player.setVolume === 'function') {
+            player.setVolume(volume);
+          }
+        });
+      }
+    
+      document.getElementById('volumeControl').addEventListener('input', function () {
+        var volume = this.value;
+        setVolumeForAllPlayers(volume);
+      });
+    </script>
+    
   </body>
   </html>
