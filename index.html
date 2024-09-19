@@ -178,7 +178,7 @@
 <style>
   body::before {
     content: "";
-    background-image: url('/home/sinssinej7/MRVG/static/css/1_sep_5.jpg');
+    background-image: url('/static/images/1_sep_5.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -772,54 +772,6 @@ section.hero.is-small.close-gap {
 
     <!-- End of Statcounter Code -->
 
-    <script>
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    
-      var players = [];
-      var youtube_id_list = [
-        'HCeob3NlD9M', '-qhX_-0rdcU', 'uGW1x527fUw', 'QEuKJhw5Tww', 'vbn7HBiWTuE',
-        'D-HBYRbOw8Q', 'JEbRJBu3xPk', 'Xm2eeFdv0Y8', '1-vu_3xscuA', 'urAUcu--sRM',
-        '4SK7nUNZbwQ', 'jqiZ1a73MCc', 'JQdmGNwnP4I', '85LHJ1KVlhY', 'StLspnjgyyY',
-        'xkd-q7IUrRg', '78k3_fNDCc0', '3sCSruiinuY', 'dAuxzeQJpv0', '6F5FT-GvN2E', 'cWcvGmao3TI'
-      ];
-    
-      function onYouTubeIframeAPIReady() {
-        youtube_id_list.forEach(function (videoId, index) {
-          players[index] = new YT.Player('player' + (index + 1), {
-            videoId: videoId,
-            playerVars: {
-              modestbranding: 1,
-              rel: 0,
-              showinfo: 0,
-            },
-            events: {
-              onReady: onPlayerReady,
-            },
-          });
-        });
-      }
-    
-      function onPlayerReady(event) {
-        var initialVolume = document.getElementById('volumeControl').value;
-        event.target.setVolume(initialVolume);
-      }
-    
-      function setVolumeForAllPlayers(volume) {
-        players.forEach(function (player) {
-          if (player && typeof player.setVolume === 'function') {
-            player.setVolume(volume);
-          }
-        });
-      }
-    
-      document.getElementById('volumeControl').addEventListener('input', function () {
-        var volume = this.value;
-        setVolumeForAllPlayers(volume);
-      });
-    </script>
-    
+  
   </body>
   </html>
