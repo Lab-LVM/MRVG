@@ -176,20 +176,13 @@
 </html>
 </head>
 <style>
-  body::before {
-    content: "";
-    background-image: url('/static/images/1_sep_5.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+body {
+    background: url('static/images/1_sep_5.png') no-repeat fixed;
+    background-size: cover; /* 화면에 꽉 차게 */
+    background-attachment: fixed; /* 배경 고정 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
     height: 100%;
-    opacity: 0.6;
-    z-index: -1;
-  }
+}
 
   .mybar {
     display: flex;
@@ -400,8 +393,8 @@ section.hero.is-small.close-gap {
 <!-- End teaser video -->
 
 <!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
+<section class="section hero" style="background-color: transparent; border-top: 2px dashed #ccc; width: 65%; margin: 0 auto;">
+  <div class="container is-max-desktop" style="background-color: transparent;">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
@@ -430,13 +423,13 @@ section.hero.is-small.close-gap {
 
 
 <!-- Youtube carousel -->
-<!-- 첫 번째 슬라이더 -->
 <section class="hero is-small">
-  <div class="hero-body">
+  <div class="hero-body" style="border-top: 2px dashed #ccc; width: 65%; margin: 0 auto;">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Music-Reactive Video Generation Comparison</h2>
       <div class="content has-text-justified">
-        <p style="font-style: normal;">We generate music-reactive videos across three different genres 
+        <p style="font-style: normal;">
+          We generate music-reactive videos across three different genres 
           (<em>i.e.</em>, Rock, K-POP, Traditional Instrumental Ensemble) 
           and compare Chroma-CENS with our H-CENS method. In our comparison 
           study, we observed that while videos generated using 
@@ -445,10 +438,16 @@ section.hero.is-small.close-gap {
           Conversely, videos generated using H-CENS better preserve and 
           emphasize these climaxes, leading to more accurate and natural visual responses. As a result, we found that H-CENS more effectively captures subtle musical changes and emotional nuances, facilitating a dynamic interaction between the music and visual elements, and conveying the emotional characteristics of the music more clearly to the viewers.
         </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body" style="border-top: 2px dashed #ccc; width: 65%; margin: 0 auto;">
+    <div class="container is-max-desktop">
       <div style="text-align: center;">
-        <p>
-          *Please adjust the volume to suit your computer's sound settings.*
-        </p>
+        <p>*Please adjust the volume to suit your computer's sound settings.*</p>
       </div>
       <div class="mybar">
         <div>
@@ -456,28 +455,28 @@ section.hero.is-small.close-gap {
         </div>
         <input style="margin: 1em; width: 10em;" type="range" id="volumeControl" min="0" max="100" value="50" step="1" oninput="setVolume(this.value)">
       </div>
-      </div>
+
       <h2 class="title is-3">Genre 1: K-POP</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="slider-container" style="opacity: 1; width: 1920px; transition: 300ms; transform: translate3d(0px, 0px, 0px);">
-       <!-- 첫 번째 슬라이드 -->
-        <div class="slider-item is-current" data-slider-index="0" style="width: 960px;height: 620px">
-          <h4 class="title is-5">Song Title: "Hypeboy"</h4>
-          <div class="video-container">
-            <iframe width="560" height="315" src="https://youtube.com/embed/HCeob3NlD9M?feature=share" frameborder="0" allowfullscreen></iframe>
-            <div id="player1"></div>
-          </div>
-        </div>
         
-        <!-- 두 번째 슬라이드 -->
-        <div class="slider-item" data-slider-index="1" style="width: 960px;height: 620px">
-          <h4 class="title is-5">Song Title: "Dash"</h4>
-          <div class="video-container">
-            <iframe width="560" height="315" src="https://youtube.com/embed/-qhX_-0rdcU?feature=share" frameborder="0" allowfullscreen></iframe>
-            <div id="player2"></div>
-
+          <!-- 첫 번째 슬라이드 -->
+          <div class="slider-item is-current" data-slider-index="0" style="width: 960px;height: 620px">
+            <h4 class="title is-5">Song Title: "Hypeboy"</h4>
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://youtube.com/embed/HCeob3NlD9M?feature=share" frameborder="0" allowfullscreen></iframe>
+              <div id="player1"></div>
+            </div>
           </div>
-        </div>
+          
+          <!-- 두 번째 슬라이드 -->
+          <div class="slider-item" data-slider-index="1" style="width: 960px;height: 620px">
+            <h4 class="title is-5">Song Title: "Dash"</h4>
+            <div class="video-container">
+              <iframe width="560" height="315" src="https://youtube.com/embed/-qhX_-0rdcU?feature=share" frameborder="0" allowfullscreen></iframe>
+              <div id="player2"></div>
+            </div>
+          </div>
 
         </div>
         <div class="slider-navigation-previous"></div>
@@ -490,9 +489,10 @@ section.hero.is-small.close-gap {
 </section>
 
 
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
+
+<section class="hero is-small">
+  <div class="hero-body" style="border-top: 2px dashed #ccc; width: 65%; margin: 0 auto;">
+    <div class="container is-max-desktop" >
       <h2 class="title is-3">Genre 2: Traditional Instrumental Ensemble</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="slider-container" style="opacity: 1; width: 1920px; transition: 300ms; transform: translate3d(0px, 0px, 0px);">
@@ -530,7 +530,7 @@ section.hero.is-small.close-gap {
 </section>
 
 <section class="hero is-small">
-  <div class="hero-body">
+  <div class="hero-body" style="border-top: 2px dashed #ccc; width: 65%; margin: 0 auto;">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Genre 3: Rock</h2>
       <div id="carousel-rock" class="carousel results-carousel">
@@ -565,8 +565,8 @@ section.hero.is-small.close-gap {
   </div>
 </section>
 
-<section class="hero is-small is-light">
-  <div class="hero-body">
+<section class="hero is-small">
+  <div class="hero-body" style="border-top: 2px dashed #ccc; width: 65%; margin: 0 auto;">
     <div class="container is-max-desktop">
       <h2 class="title is-3">Music-Reactive Video Generation with H-CENS</h4>
       <b>
